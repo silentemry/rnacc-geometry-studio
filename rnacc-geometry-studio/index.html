@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Parametric geometry explorer for RNACC sector and polygon phases." />
+  <title>RNACC · Geometry Studio</title>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <header class="brand">
+        <div class="brand-symbol" aria-hidden="true">∑</div>
+        <div>
+          <p class="eyebrow">Research instrument / v0.4</p>
+          <h1>Geometry Studio</h1>
+          <p class="brand-subtitle">Recurrent normalized asymptotic centers</p>
+        </div>
+      </header>
+
+      <div class="controls">
+        <section class="control-section">
+          <div class="section-heading"><span>01</span><h2>Construction</h2></div>
+          <label for="n-input" class="field-title">Polygonal state <span class="math-label">n</span></label>
+          <div class="number-control">
+            <button id="n-decrement" class="step-button" type="button" aria-label="Decrease n">−</button>
+            <input id="n-input" type="number" min="4" max="120" step="1" value="9" aria-label="Polygonal state n" />
+            <button id="n-increment" class="step-button" type="button" aria-label="Increase n">+</button>
+          </div>
+          <input id="n-range" type="range" min="4" max="120" value="9" aria-label="Polygonal state n slider" />
+          <div class="range-captions"><span>n = 4</span><span>n = 120</span></div>
+
+          <p class="field-title group-label">Object</p>
+          <div class="segmented" role="group" aria-label="Object view">
+            <button id="mode-sector" type="button" class="segment active" aria-pressed="true">σ <small>Sector</small></button>
+            <button id="mode-polygon" type="button" class="segment" aria-pressed="false">Σ <small>Polygon</small></button>
+          </div>
+
+          <div id="phase-container" class="slider-field">
+            <div class="label-row"><label for="phase-range" class="field-title">Phase <span class="math-label">m</span></label><output id="phase-value">0 / 8</output></div>
+            <input id="phase-range" type="range" min="0" max="8" value="0" />
+          </div>
+
+          <div class="slider-field">
+            <div class="label-row"><label for="depth-range" class="field-title">Spiral depth <span class="math-label">k</span></label><output id="depth-value">14 arcs</output></div>
+            <input id="depth-range" type="range" min="1" max="28" step="1" value="14" />
+          </div>
+        </section>
+
+        <section class="control-section">
+          <div class="section-heading"><span>02</span><h2>Visible geometry</h2></div>
+          <label class="check-line"><input id="show-frame" type="checkbox" checked /><span class="check-title">Triangle / polygon bounds</span></label>
+          <label class="check-line"><input id="show-primary" type="checkbox" checked /><span class="check-title">Fundamental α spiral</span></label>
+          <div class="branch-group">
+            <p class="muted-label">Ω directions · s, f, j</p>
+            <label class="check-line"><input id="show-s" type="checkbox" checked /><span class="color-dot s"></span><span>Ωˢ — scale</span></label>
+            <label class="check-line"><input id="show-f" type="checkbox" checked /><span class="color-dot f"></span><span>Ωᶠ — frequency</span></label>
+            <label class="check-line"><input id="show-j" type="checkbox" checked /><span class="color-dot j"></span><span>Ωʲ — resonance</span></label>
+          </div>
+          <div class="omega-order-panel">
+            <p class="muted-label">Independent Ω recursion order · 0–12</p>
+            <p class="helper-note">Ωˢᵖ, Ωᶠᵖ and Ωʲᵖ are nested around their own vertices. Zero hides that chain.</p>
+            <div class="slider-field omega-slider">
+              <div class="label-row"><label for="order-s" class="field-title">Scale · s</label><output id="order-s-value">1</output></div>
+              <input id="order-s" type="range" min="0" max="12" step="1" value="1" />
+            </div>
+            <div class="slider-field omega-slider">
+              <div class="label-row"><label for="order-f" class="field-title">Frequency · f</label><output id="order-f-value">1</output></div>
+              <input id="order-f" type="range" min="0" max="12" step="1" value="1" />
+            </div>
+            <div class="slider-field omega-slider">
+              <div class="label-row"><label for="order-j" class="field-title">Resonance · j</label><output id="order-j-value">1</output></div>
+              <input id="order-j" type="range" min="0" max="12" step="1" value="1" />
+            </div>
+          </div>
+          <div class="focus-panel">
+            <p class="muted-label">Inspect a deep Ω region · normalized local coordinates</p>
+            <div class="focus-fields">
+              <select id="focus-direction" aria-label="Ω inspection direction">
+                <option value="s">Ωˢ Scale</option>
+                <option value="f">Ωᶠ Frequency</option>
+                <option value="j">Ωʲ Resonance</option>
+              </select>
+              <input id="focus-order" aria-label="Ω inspection order" type="number" min="1" max="12" step="1" value="12" />
+            </div>
+            <div class="focus-buttons">
+              <button id="focus-button" type="button" class="mini-button">Inspect Ω order</button>
+              <button id="overview-button" type="button" class="mini-button">Overview</button>
+            </div>
+            <p class="helper-note">Shows the selected deep region in its own scale, not as a magnified absolute-coordinate approximation.</p>
+          </div>
+          <label class="check-line"><input id="show-seams" type="checkbox" checked /><span class="check-title">Ω partition lines</span></label>
+          <label class="check-line"><input id="show-anchors" type="checkbox" /><span class="check-title">Origin / vertex markers</span></label>
+          <label class="check-line"><input id="show-circle" type="checkbox" /><span class="check-title">Projected circumcircle</span></label>
+          <div class="tau-group">
+            <p class="muted-label">Orthogonal transport · τ₁–τ₃ (α₀–α₂)</p>
+            <label class="check-line"><input id="show-tau" type="checkbox" checked /><span class="check-title">τ coupling triangles</span></label>
+            <div class="tau-components">
+              <label class="check-line"><input id="show-tau-1" type="checkbox" checked /><span class="tau-color tau-one">τ₁</span><span>Outer</span></label>
+              <label class="check-line"><input id="show-tau-2" type="checkbox" checked /><span class="tau-color tau-two">τ₂</span><span>Inner</span></label>
+              <label class="check-line"><input id="show-tau-3" type="checkbox" checked /><span class="tau-color tau-three">τ₃</span><span>Ωˢ seam</span></label>
+            </div>
+            <label class="check-line tau-subcheck"><input id="show-tau-branches" type="checkbox" /><span class="check-title">Repeat τ in Ω regions</span></label>
+            <label class="check-line tau-subcheck"><input id="show-tau-contacts" type="checkbox" /><span class="check-title">Contact points / labels</span></label>
+            <div class="tau-embedding">
+              <label for="tau-payload" class="field-title">Transport lowercase σ into τ</label>
+              <select id="tau-payload" aria-label="Sigma payload mode">
+                <option value="off">Off · no transported σ</option>
+                <option value="basic" selected>σ basic · fundamental τ only</option>
+                <option value="extended">σ extended · follow Ω directions</option>
+              </select>
+              <p class="helper-note">Exact triangular transport: τ₁ → σ₂ₙ, τ₂ → σₙ, τ₃ → σ₂ₙ. Each local σ inherits the visible α / Ω / τ layers, with no incircle fitting.</p>
+              <label for="tau-transport" class="field-title">Ω branch for τ payload extension</label>
+              <select id="tau-transport" aria-label="Tau sigma transport direction">
+                <option value="none">None · primary τ only</option>
+                <option value="s">s · scale</option>
+                <option value="f">f · frequency</option>
+                <option value="j">j · resonance</option>
+                <option value="all" selected>All visible r directions</option>
+              </select>
+              <label for="tau-reflection" class="field-title">Transport handedness</label>
+              <select id="tau-reflection" aria-label="Tau sigma reflection mode">
+                <option value="auto" selected>Automatic · alternate at τ₂</option>
+                <option value="normal">Normal · original orientation</option>
+                <option value="mirrored">Mirrored · reflect about σ bisector</option>
+              </select>
+              <label class="check-line tau-subcheck"><input id="show-tau-axes" type="checkbox" /><span class="check-title">Show transported local axes / anchors</span></label>
+              <p class="helper-note">Embedding is one level deep: transported σ contains the selected geometric layers, but does not spawn new σ payloads inside its own τ. Automatic mirroring at τ₂ is an adjustable display convention.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="control-section compact-section">
+          <div class="section-heading"><span>03</span><h2>Display</h2></div>
+          <div class="segmented" role="group" aria-label="Color scheme">
+            <button id="palette-reference" type="button" class="segment active" aria-pressed="true">Monochrome</button>
+            <button id="palette-colored" type="button" class="segment" aria-pressed="false">Ω colors</button>
+          </div>
+        </section>
+      </div>
+      <footer class="sidebar-footer">
+        <p>All geometry is generated in normalized coordinates with Γ₀ = ½.</p>
+        <p class="version-info">No frameworks · No build tools · Local-first</p>
+      </footer>
+    </aside>
+
+    <main class="workspace">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">Construction workspace</p>
+          <h2 id="view-title">σ · One triangular partition</h2>
+        </div>
+        <div class="topbar-actions">
+          <button id="fit-button" type="button" class="button ghost" title="Reset view to fit entire object">
+            <span aria-hidden="true">⛶</span> Fit view
+          </button>
+          <button id="export-button" type="button" class="button primary">↓ Export SVG</button>
+        </div>
+      </header>
+
+      <section id="viewer" class="viewer" aria-label="Interactive mathematical geometry viewer">
+        <div id="drawing" class="drawing"></div>
+        <div class="viewer-label top-left" id="viewer-label">n = 9 · m = 0</div>
+        <div class="viewer-label bottom-left">Scroll to zoom · Drag to pan · Double-click to fit</div>
+        <div class="viewer-label bottom-right" id="zoom-label">1.00×</div>
+      </section>
+
+      <section class="data-panel" aria-label="Calculated parameters">
+        <div class="data-panel-head">
+          <div>
+            <p class="eyebrow">Derived values</p>
+            <h3>Live construction parameters</h3>
+          </div>
+          <span class="precision-tag">Normalized units</span>
+        </div>
+        <div class="data-grid">
+          <div class="datum"><span>θ = π/n</span><strong id="value-theta">—</strong><small>Sector half-angle</small></div>
+          <div class="datum"><span>Δ = 2π/n</span><strong id="value-delta">—</strong><small>Polygon phase step</small></div>
+          <div class="datum"><span>α₀</span><strong id="value-alpha">—</strong><small>Primary arc radius</small></div>
+          <div class="datum"><span>β₀</span><strong id="value-beta">—</strong><small>Primary arc center x</small></div>
+          <div class="datum"><span>Ωˢ</span><strong id="value-s">—</strong><small>Scale branch</small></div>
+          <div class="datum"><span>Ωᶠ</span><strong id="value-f">—</strong><small>Frequency branch</small></div>
+          <div class="datum"><span>Ωʲ</span><strong id="value-j">—</strong><small>Resonance branch</small></div>
+          <div class="datum"><span>Γ₀</span><strong>0.500000</strong><small>Projected radius</small></div>
+          <div class="datum tau-datum"><span>τ₁ · α₀</span><strong id="value-tau-1">—</strong><small>Outer-side coupling</small></div>
+          <div class="datum tau-datum"><span>τ₂ · α₁</span><strong id="value-tau-2">—</strong><small>Inner-side coupling</small></div>
+          <div class="datum tau-datum"><span>τ₃ · α₂</span><strong id="value-tau-3">—</strong><small>Ωˢ seam coupling</small></div>
+          <div class="datum"><span>Ω direction orders</span><strong id="value-orders">—</strong><small>s / f / j</small></div>
+          <div class="datum"><span>Local region count</span><strong id="value-region-count">—</strong><small>Master + selected Ω</small></div>
+          <div class="datum"><span>τ → σ payload</span><strong id="value-embedding">σ basic</strong><small>σ₂ₙ / σₙ / σ₂ₙ</small></div>
+        </div>
+        <p class="verification" id="verification">—</p>
+      </section>
+    </main>
+  </div>
+  <script type="module" src="./src/app.js"></script>
+</body>
+</html>

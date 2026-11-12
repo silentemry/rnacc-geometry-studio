@@ -1,0 +1,10 @@
+{
+  "name": "rnacc-geometry-studio",
+  "version": "0.4.0",
+  "private": true,
+  "type": "module",
+  "description": "Browser-based geometric constructor for RNACC sector and polygon states",
+  "scripts": {
+    "test": "node --test tests/*.test.js"
+  }
+}

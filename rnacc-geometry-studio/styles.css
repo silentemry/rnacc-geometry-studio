@@ -1,0 +1,121 @@
+:root {
+  font-family: "DM Sans", system-ui, -apple-system, Segoe UI, Arial, sans-serif;
+  color: #23364a;
+  background: #eef2f4;
+  font-synthesis: none;
+}
+* { box-sizing: border-box; }
+body { margin: 0; }
+button, input { font: inherit; }
+button { cursor: pointer; }
+button:focus-visible, input:focus-visible { outline: 3px solid #90bbc7; outline-offset: 2px; }
+.app-shell { display: grid; grid-template-columns: 302px minmax(0,1fr); min-height: 100vh; }
+.sidebar { background: #fff; border-right: 1px solid #dce4e8; display:flex; flex-direction:column; }
+.brand { display:flex; gap:13px; align-items:center; padding: 26px 23px 25px; border-bottom:1px solid #e7ecee; }
+.brand-symbol { display:grid; place-items:center; width:45px; height:45px; border-radius:13px; background:#193e54; color:#fff; font-family:Georgia,serif; font-size:28px; }
+.eyebrow { text-transform:uppercase; letter-spacing:.12em; font-size:10px; color:#79909e; font-weight:700; margin:0 0 6px; }
+.brand h1 { font-size:17px; letter-spacing:-.035em; margin:0; font-weight:700; }
+.brand-subtitle { font-size:10px; color:#8b9eab; line-height:1.5; margin:5px 0 0; }
+.controls { overflow:auto; }
+.control-section { padding:22px 23px 23px; border-bottom:1px solid #e7ecee; }
+.section-heading { display:flex; gap:10px; align-items:center; margin-bottom:20px; }
+.section-heading span { font-family:"IBM Plex Mono", monospace; color:#86a7b8; font-size:11px; }
+.section-heading h2 { font-size:13px; font-weight:700; margin:0; }
+.field-title { font-size:12px; font-weight:600; color:#405466; }
+.math-label { font-style:italic; color:#7a96a7; font-family:Georgia,serif; }
+.number-control { display:grid; grid-template-columns:44px 1fr 44px; gap:8px; margin-top:9px; align-items:center; }
+.number-control input { width:100%; min-width:0; text-align:center; font-family:"IBM Plex Mono",monospace; border:1px solid #dce4e8; border-radius:9px; background:#f8fafb; font-size:19px; font-weight:500; height:42px; }
+.number-control input::-webkit-outer-spin-button, .number-control input::-webkit-inner-spin-button { -webkit-appearance:none; margin:0; }
+.step-button { width:44px; height:42px; background:#f3f7f8; border:1px solid #e4e9ec; color:#365468; border-radius:9px; font-size:21px; }
+.step-button:hover, .button.ghost:hover { background:#e8f1f5; }
+input[type="range"] { display:block; width:100%; accent-color:#285c72; cursor:pointer; margin:15px 0 2px; }
+.range-captions { display:flex; justify-content:space-between; color:#a0aeba; font-family:"IBM Plex Mono",monospace; font-size:10px; }
+.group-label { margin:23px 0 9px; }
+.segmented { display:flex; gap:3px; background:#eff4f6; border:1px solid #e5eaed; padding:4px; border-radius:11px; }
+.segment { border:0; border-radius:8px; color:#7a8b97; flex:1; background:transparent; padding:9px 6px; font-weight:700; font-size:13px; }
+.segment small { font-weight:500; margin-left:5px; font-size:11px; }
+.segment.active { color:#1f495c; background:#fff; box-shadow:0 1px 3px #23364a20; }
+.slider-field { margin-top:21px; }
+.label-row { display:flex; align-items:baseline; justify-content:space-between; }
+.label-row output { font-size:11px; color:#748b98; font-family:"IBM Plex Mono",monospace; }
+.check-line { display:flex; align-items:center; gap:10px; min-height:34px; font-size:12px; cursor:pointer; color:#425467; }
+.check-line input { width:15px; height:15px; accent-color:#285c72; margin:0; }
+.check-title { flex:1; }
+.branch-group { margin:12px 0 8px 24px; border-left:2px solid #e6edef; padding-left:13px; }
+.muted-label { color:#8799a5; margin:0 0 6px; font-size:10px; }
+.color-dot { width:7px; height:7px; border-radius:100%; background:#b0b9bf; margin-left:0; }
+.color-dot.s { background:#1b9ca5; }.color-dot.f{background:#e0a12b;}.color-dot.j{background:#cf6a7f;}
+.upcoming { color:#a0acb4; cursor:default; }
+.soon { font-size:9px; font-weight:700; color:#9dabb3; margin-left:auto; letter-spacing:.04em; }
+.compact-section { padding-bottom:20px; }
+.compact-section .section-heading { margin-bottom:14px; }
+.compact-section .segment { font-size:11px; }
+.sidebar-footer { margin-top:auto; padding:20px 24px; color:#8d9ca7; font-size:11px; line-height:1.6; }
+.sidebar-footer p { margin:0 0 5px; }
+.sidebar-footer .version-info { font-size:10px; color:#a5b3bc; }
+.workspace { display:flex; flex-direction:column; min-width:0; padding:22px 26px 30px; max-height:100vh; overflow:auto; gap:16px; }
+.topbar { display:flex; align-items:center; justify-content:space-between; gap:12px; }
+.topbar h2 { margin:0; font-size:20px; letter-spacing:-.035em; font-weight:600; }
+.topbar-actions { display:flex; gap:9px; align-items:center; }
+.button { border-radius:9px; padding:10px 14px; font-size:11px; font-weight:700; border:1px solid #dbe5e9; white-space:nowrap; }
+.button.ghost { color:#496176; background:#fff; }.button.primary { background:#234b60; border-color:#234b60; color:#fff; }.button.primary:hover { background:#17617f; }
+.viewer { position:relative; flex:1 0 350px; min-height:370px; border:1px solid #dce5e9; background:#fff; box-shadow:0 2px 10px #1d394510; border-radius:15px; overflow:hidden; }
+.drawing, .drawing svg { position:absolute; inset:0; width:100%; height:100%; }
+.drawing svg { display:block; touch-action:none; cursor:grab; }
+.drawing svg.dragging { cursor:grabbing; }
+.viewer-label { position:absolute; pointer-events:none; color:#8998a4; z-index:1; background:#ffffffdb; backdrop-filter:blur(3px); padding:5px 9px; border-radius:7px; font-size:10px; font-family:"IBM Plex Mono",monospace; }
+.viewer-label.top-left { left:18px; top:16px; letter-spacing:.02em; color:#5f7888; }
+.viewer-label.bottom-left { bottom:16px; left:16px; }
+.viewer-label.bottom-right { bottom:16px; right:16px; }
+.data-panel { background:#fff; border:1px solid #dce5e9; border-radius:15px; padding:20px 22px 12px; }
+.data-panel-head { display:flex; align-items:center; justify-content:space-between; margin-bottom:17px; }
+.data-panel-head h3 { font-size:14px; margin:0; font-weight:700; letter-spacing:-.02em; }
+.precision-tag { font-family:"IBM Plex Mono",monospace; color:#8298a8; font-size:10px; background:#edf3f5; border-radius:6px; padding:6px 8px; }
+.data-grid { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); border-top:1px solid #edf0f2; border-bottom:1px solid #edf0f2; }
+.datum { padding:12px 10px; min-width:0; border-bottom:1px solid #f0f3f5; }
+.datum span { display:block; font-size:11px; color:#8a9ba6; }
+.datum strong { display:block; font:500 15px "IBM Plex Mono",monospace; letter-spacing:-.03em; margin:5px 0; color:#264456; }
+.datum small { color:#a4b0b8; font-size:10px; }
+.verification { color:#77919f; font-size:10px; margin:11px 0 0; line-height:1.5; }
+@media (min-width:1500px) { .app-shell { grid-template-columns:318px minmax(0,1fr); } .workspace { padding:28px 38px 32px; } }
+@media (max-width:1000px) { .app-shell{grid-template-columns:245px minmax(0,1fr);} .control-section{padding:18px 14px;} .brand{padding:19px 12px;} .workspace{padding:16px;} .data-grid{grid-template-columns:repeat(2, minmax(0,1fr));}.viewer{min-height:300px;} }
+@media (max-width:680px) { .app-shell{display:flex;flex-direction:column;} .sidebar { border-right:0; } .controls { display:grid; grid-template-columns:1fr; } .sidebar-footer{display:none;} .workspace{max-height:unset;padding:12px;gap:12px;} .topbar{align-items:flex-start;} .topbar h2{font-size:16px;} .topbar-actions{gap:4px;} .button{padding:9px 8px; font-size:10px;} .viewer{height:58vh;flex:unset;min-height:340px;} .viewer-label.bottom-left { max-width:75%; } .data-panel{padding:13px 12px;} .datum strong{font-size:12px;} .precision-tag{font-size:8px;} }
+
+/* v0.2: the three finite τ coupling objects. */
+.tau-group { margin:14px 0 5px; padding:12px 12px 10px; background:#f2f7f9; border:1px solid #e0ebef; border-radius:10px; }
+.tau-group .muted-label { margin:0 0 6px; color:#6c8898; }
+.tau-subcheck { margin-left:11px; color:#617888; }
+.tau-datum strong { color:#3d7293; }
+
+.tau-components { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:1px; margin:0 0 7px; }
+.tau-components .check-line { gap:4px; font-size:10px; min-height:29px; white-space:nowrap; }
+.tau-components .check-line input { width:13px; height:13px; }
+.tau-color { font-weight:700; color:#526673; }
+.tau-one { color:#0b91a0; }.tau-two { color:#bd8a23; }.tau-three { color:#c45d83; }
+
+/* v0.3: independently recurrent Ω orders, and global τ frame embedding. */
+.omega-order-panel { margin:10px 0 12px; padding:11px 12px 9px; background:#f7fafb; border:1px solid #e5edf1; border-radius:10px; }
+.omega-order-panel .muted-label { color:#54798b; font-weight:700; }
+.helper-note { font-size:10px; line-height:1.55; color:#8ca0ab; margin:4px 0 8px; }
+.omega-slider { margin-top:8px; }
+.omega-slider .field-title { font-size:11px; }
+.omega-slider output { font-weight:700; color:#285c72; }
+.omega-slider input[type="range"] { margin:7px 0 5px; }
+.tau-embedding { border-top:1px solid #deeaef; margin-top:9px; padding-top:10px; }
+.tau-embedding select { margin-top:8px; width:100%; height:36px; padding:5px 9px; border:1px solid #cadbe3; border-radius:8px; color:#29546c; background:#fff; font-size:11px; }
+.tau-embedding .helper-note { margin-top:7px; }
+
+.focus-panel { background:#f7fafb; border:1px solid #e4edf1; border-radius:10px; padding:11px 12px; margin:11px 0 10px; }
+.focus-fields { display:grid; grid-template-columns:1fr 55px; gap:8px; margin-top:8px; }
+.focus-fields select,.focus-fields input { border:1px solid #d4e0e5; height:32px; border-radius:7px; background:#fff; color:#31566a; font-size:11px; padding:5px; width:100%; min-width:0; }
+.focus-fields input { text-align:center; }
+.focus-buttons { display:flex; gap:6px; margin-top:8px; }
+.mini-button { padding:7px 8px; flex:1; border-radius:7px; border:1px solid #cfdde4; background:#fff; color:#38647a; font-weight:650; font-size:10px; }
+.mini-button:hover { background:#ebf3f6; }
+
+/* v0.4: transported lowercase-σ payloads and Ω extension controls. */
+.tau-embedding { display:grid; gap:6px; }
+.tau-embedding .field-title { margin-top:6px; }
+.tau-embedding select { margin-top:0; }
+.tau-embedding select:disabled { background:#eef4f5; color:#9aabb5; }
+.tau-embedding .check-line { margin-top:6px; }

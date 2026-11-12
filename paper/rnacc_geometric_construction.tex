@@ -1,0 +1,110 @@
+\documentclass[10pt,letterpaper]{article}
+\usepackage[margin=0.82in]{geometry}
+\usepackage{amsmath,amssymb,mathtools}
+\usepackage{microtype}
+\usepackage{booktabs}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\definecolor{ink}{HTML}{17374A}
+\hypersetup{colorlinks=true,linkcolor=ink,urlcolor=ink}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{5pt}
+\setlist{nosep,leftmargin=1.5em}
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{\small RNACC \textbar\ Geometric construction}
+\rhead{\small Silent Emry}
+\cfoot{\thepage}
+\title{\vspace{-1.5em}\textbf{A Normalized Polygonal Construction with\\Golden-Ratio Arc Scaling}\\\large A concise mathematical specification for RNACC Geometry Studio}
+\author{Zachary D. Ulrich}
+\date{November 2026 \quad \textit{Technical note, version 0.1}}
+\begin{document}
+\maketitle
+\vspace{-1em}
+\begin{abstract}
+This note extracts the arithmetic and Euclidean-geometric definitions from the October 2026 manuscript \emph{The Recurrent Normalized Asymptotic Centers of Correspondence}. It specifies a normalized regular-polygon sector, a recursively scaled sequence of quarter-circle radii, derived offsets, three branch-scale ratios, and a first-order collection of transport chord lengths. The corresponding RNACC Geometry Studio is an interactive browser visualization. This note is a \emph{construction specification}, not a proof of physical interpretations, uniqueness, or higher-order convergence.
+\end{abstract}
+
+\section{Domain and normalization}
+Take an integer $n\geq4$, with polygon phase index $m\in\{0,\dots,n-1\}$ and nonnegative arc-depth index $k$. Let
+\begin{equation}
+\varphi=\frac{1+\sqrt{5}}2,\qquad \theta=\frac{\pi}{n},\qquad
+\Delta=\frac{2\pi}{n}=2\theta,\qquad \nabla=\frac{\pi}{2n}=\frac\theta2,\qquad \Gamma_0=\frac12.
+\end{equation}
+The base sector is the triangle with vertices
+\begin{equation}
+P_0=(0,0),\quad P_1=(\Gamma_0,0),\quad
+P_2=(\Gamma_0\cos\Delta,\Gamma_0\sin\Delta).
+\end{equation}
+Write $R(\omega)$ for the standard planar counterclockwise rotation matrix:
+\begin{equation}
+R(\omega)=\begin{bmatrix}\cos\omega&-\sin\omega\\\sin\omega&\cos\omega\end{bmatrix},\qquad
+P_i^{(m)}=R(m\Delta)P_i.
+\end{equation}
+Rotating the base sector through all $m$ produces the $n$ sectors of the corresponding regular polygon; $\Gamma_0$ is its circumradius. The sector is specified in Cartesian coordinates; display systems may invert the screen's vertical axis separately.
+
+\section{Arc scaling and scalar offsets}
+Define the parameter and primary radius
+\begin{equation}
+T_0=1+\frac{\tan^2\theta}{\varphi^3},\qquad
+\alpha_0=\frac{\sin\theta}{T_0\cos\theta+2\tan\theta},\qquad
+\alpha_k=\frac{\alpha_0}{\varphi^k}\quad(k\geq0).
+\label{eq:alpha}
+\end{equation}
+Thus $\alpha_{k+1}/\alpha_k=\varphi^{-1}$. This is an imposed recursive scaling rule, not an independently established optimum. Define the first offsets, using the normalization above:
+\begin{align}
+\beta_0&=\Gamma_0-\frac{\alpha_0}{\cos\theta}, &
+\beta_1&=\beta_0+\alpha_0,\\
+\beta_2&=\beta_1-2\alpha_1, &
+\beta_3&=\beta_1-(\alpha_0+\alpha_2),\\
+\beta_4&=\frac{\alpha_0}{\tan\Delta}.&&
+\end{align}
+The $\beta_3$ expression is the algebraic simplification of the nested expression printed in the source manuscript. The source also defines $\psi=(\varphi+2)/5$ and $\Psi_0=\alpha_2\psi$ as an optional additional construction scale.
+
+\section{First-order branch operators}
+Define three length-like quantities from the same sector geometry:
+\begin{align}
+\Gamma_s&=\beta_2-\alpha_2\frac{\cos\theta}{1+\sin\theta},\\
+\Gamma_f&=\Gamma_0-\frac{\alpha_0}{\sin\Delta},\\
+\Gamma_j&=\Gamma_0-\beta_1.
+\end{align}
+Their dimensionless normalized branch factors are
+\begin{equation}
+\Omega^s=\frac{\Gamma_s}{\Gamma_0}=2\Gamma_s,\qquad
+\Omega^f=\frac{\Gamma_f}{\Gamma_0}=2\Gamma_f,\qquad
+\Omega^j=\frac{\Gamma_j}{\Gamma_0}=2\Gamma_j.
+\label{eq:omega}
+\end{equation}
+The labels $s$, $f$, and $j$ reproduce the manuscript's \emph{scale}, \emph{frequency}, and \emph{resonance} branch names; here they designate three geometric factors, not measured physical quantities.
+
+The browser prototype draws first-order sub-sectors by applying homotheties with these factors about selected sector vertices. The vertex assignment is a stated implementation convention, not uniquely implied by Eqs.~\eqref{eq:alpha}--\eqref{eq:omega}: the current prototype assigns $s$ to $P_0$, $f$ to $P_2$, and $j$ to $P_1$. Higher-order recursion is outside the present specification.
+
+\section{First-three-arc transport lengths}
+For the first three arc indices, let
+\begin{equation}
+ t_1=2\nabla=\theta,\qquad t_2=\frac\pi2+\Delta,\qquad t_3=\pi+\theta.
+\end{equation}
+The manuscript specifies the chord lengths
+\begin{equation}
+\tau_1=2\alpha_0\sin\nabla,\qquad
+\tau_2=2\alpha_1\sin\theta,\qquad
+\tau_3=2\alpha_2\sin\nabla.
+\label{eq:tau}
+\end{equation}
+The angle definitions imply
+\begin{equation}
+(t_3-t_2)-\left(\frac\pi2-\theta\right)=0,
+\qquad t_1+t_2=\frac\pi2+\frac{3\pi}{n}.
+\end{equation}
+\textbf{Special case.} $t_1+t_2=\pi$ if and only if $n=6$ in the stated domain; it is not an identity for all $n\geq4$. The implemented $\tau$ objects are bounded to $k=0,1,2$ in the current prototype. Geometric contact placement and segment-incidence checks belong to the implementation and its tests, rather than following solely from the chord-length expressions.
+
+\section{Reproducible outputs and scope}
+For each allowed $n$, a minimal reproduction should compute the parameters in Eqs.~\eqref{eq:alpha}--\eqref{eq:tau}, construct the three sector vertices, rotate through the $n$ phases, and render the selected first-order geometry. Useful numerical checks include regular-polygon closure, constant radius ratios, finite coordinate values, and the specified chord lengths.
+
+\textbf{Included:} normalized polygon sectors; $\varphi$-scaled radii; $\beta$ offsets; first-order $\Omega$ factors; the three $\tau$ chord lengths; geometric rotation. \textbf{Excluded:} physical claims about mass or gravity; claims of uniqueness or universal optimality for $\varphi$; unspecified higher-order $\Phi$ coordinates; and proofs of asymptotic or dynamical behavior. The original manuscript contains further notation and proposed relationships that are intentionally not reproduced here, including coordinates whose notation needs reconciliation before an unambiguous implementation.
+
+\section*{Provenance and citation}
+This technical note is an edited, math-focused companion to \emph{The Recurrent Normalized Asymptotic Centers of Correspondence} (Silent Emry, October 2026), and to \emph{RNACC Geometry Studio v0.2}. Source code and live demo: \emph{github.com/silentemry/rnacc-geometry-studio}. DOI: \emph{10.5281/zenodo.24163661}. Distinguish the 2026 manuscript from this reduced specification when citing them.
+\end{document}
