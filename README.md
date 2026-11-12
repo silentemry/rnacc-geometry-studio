@@ -27,7 +27,7 @@ This portfolio project translates geometric formulas into an interactive web int
 The paper extracts a mathematical skeleton from *The Recurrent Normalized Asymptotic Centers of Correspondence* (Silent Emry, October 2026). It distinguishes defined constructions from implementation conventions; it does not claim established physical results.
 
 ## Authorship
-Mathematical framework: **Silent Emry**. Add your preferred software-development credit and public portfolio link before publishing.
+Mathematical framework: **Silent Emry**. https://zenodo.org/records/24163661
 
 ## License
-Not yet selected. Confirm software and paper license terms prior to public release.
+Copyright (C) 2026 Zachary D. Ulrich. Released under CC BY 4.0 license. 
