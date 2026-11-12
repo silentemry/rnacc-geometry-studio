@@ -1,4 +1,4 @@
-# RNACC Geometry Studio · v0.4
+# RNACC Geometry Studio 
 
 A standalone browser instrument for *The Recurrent Normalized Asymptotic Centers of Correspondence* (Silent Emry, October 2026). Written in plain HTML, CSS and ES-module JavaScript; no framework, build step, or internet dependency.
 
@@ -11,10 +11,6 @@ A standalone browser instrument for *The Recurrent Normalized Asymptotic Centers
 5. Optionally, if you have Node.js installed, run `npm test` (20 unit/integration tests) and `node scripts/examples.js` to regenerate vector examples.
 
 ES modules require Live Server or another static web server; don't rely on opening `index.html` directly via `file://`.
-
-## What's new: exact lowercase-σ transport into τ
-
-v0.3 fitted an entire polygon inside the *incircle* of each τ triangle. **v0.4 replaces that construction entirely**. It transports a **single lowercase σ triangle partition** into each τ frame using an exact scale + rotation (and optionally a reflection). No Σ polygon is embedded into τ and no affine distortion occurs.
 
 ### Why τ₁ and τ₃ contain σ₂ₙ, but τ₂ contains σₙ
 
@@ -42,7 +38,7 @@ where Oτ is the αₖ arc center and aₖ = 0°, 90°, or 180° is the arc star
 
 This *geometric similarity* is derivable from the defined contact angles. **Whether an actual physical transport must mirror is not established by those equations.** The Automatic option mirrors only τ₂ as a clearly identified and editable display convention.
 
-### New τ controls
+### τ controls
 
 **Transport lowercase σ into τ**
 
@@ -65,7 +61,7 @@ All existing controls continue working: n=4–120, σ/Σ main mode, m, α depth,
 - The view can omit payloads smaller than the rendering threshold (default 5 screen pixels). That is only a drawing optimization, not a mathematical cutoff.
 - SVG payload instances reuse exactly two `<defs>` templates via `<use>`, rather than duplicating whole constructions. A cap of 4,000 instances prevents excessively large output at high n and large orders. If tiny geometries are important, zoom or use a normalized local Ω inspection view.
 - Main n remains 4–120. Internal σ₂ₙ templates permit q up to 240.
-- The root Ω-region homotheties are inherited from the validated v0.3 construction. Their being placed at the three reference vertices is a modeling convention, not a uniqueness proof.
+- The root Ω-region homotheties are inherited from the validated from prototype construction. Their being placed at the three reference vertices is a modeling convention, not a uniqueness proof.
 
 ## Files
 
@@ -88,4 +84,4 @@ All existing controls continue working: n=4–120, σ/Σ main mode, m, α depth,
 - `n=9`, Σ, **σ extended**, transport=All: observe the same local carriers repeated across all nine phases.
 - Try **Normal** and **Mirrored** while the local axes overlay is on; the carrier outline remains fixed but internal spiral handedness reverses.
 
-The accompanying `CHANGELOG.md` documents the precise changes from v0.3.
+
