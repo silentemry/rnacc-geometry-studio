@@ -4,8 +4,8 @@ A standalone browser instrument for *The Recurrent Normalized Asymptotic Centers
 
 ## Open in VS Code (Live Server)
 
-1. Extract `rnacc-geometry-studio-v0.4.zip`.
-2. Open the resulting `rnacc-geometry-studio-v0.4` folder in VS Code.
+1. Extract `rnacc-geometry-studio.zip`.
+2. Open the resulting `rnacc-geometry-studio` folder in VS Code.
 3. Right-click `index.html` → **Open with Live Server**.
 4. If upgrading an existing workspace, back up any modified source files before copying the new `index.html`, `styles.css`, `src/`, `tests/`, and `scripts/` files over the previous version. **The new `src/transport.js` must be included.**
 5. Optionally, if you have Node.js installed, run `npm test` (20 unit/integration tests) and `node scripts/examples.js` to regenerate vector examples.
